@@ -24,13 +24,12 @@ const carData = {
   image: "/cars/porsche.jpeg", // Update this with a valid path
   gallery: [
     "/cars/porsche.jpeg",
-    "/cars/porsche.jpeg",
-    "/cars/mercedes.jpeg",
-    "/cars/porsche.jpeg",
-    "/cars/porsche.jpeg",
-    "/cars/mercedes.jpeg",
-    "/cars/porsche.jpeg",
-    "/cars/porsche.jpeg",
+    "/cars/1.jpg",
+    "/cars/2.jpg",
+    "/cars/3.jpg",
+    "/cars/4.jpg",
+    "/cars/5.jpg",
+    "/cars/6.jpg",
   ],
 };
 
@@ -129,16 +128,6 @@ export default async function Home({ searchParams }: HomeProps) {
     setSelectedImage(img);
   };
 
-  const allCars = await fetchCars({
-    manufacturer: searchParams.manufacturer || "",
-    year: searchParams.year || 2022,
-    fuel: searchParams.fuel || "",
-    limit: searchParams.limit || 10,
-    model: searchParams.model || "",
-  });
-
-  const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
-
   const handleScroll = () => {
     const nextSection = document.getElementById("discover");
 
@@ -186,56 +175,48 @@ export default async function Home({ searchParams }: HomeProps) {
           </div>
         </div>
 
-        {!isDataEmpty ? (
-          <section>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
-              {cars.map((car) => (
-                <Link
-                  href={`${car.id}`}
-                  key={car.id + Math.random() * 10}
-                  className="relative bg-white shadow-md overflow-hidden border border-gray-200"
-                >
-                  <div className="overflow-hidden">
-                    <Image
-                      src={car.image}
-                      alt={car.title}
-                      width={400}
-                      height={300}
-                      className="w-full object-cover hover:scale-[1.2] transition duration-[1s] ease-in-out"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h2 className="text-lg font-bold text-gray-900">
-                      {car.title}
-                    </h2>
-                    <p className="text-sm text-gray-600 mt-1">
-                      {car.year} / {car.mileage}
+        <section>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 p-4">
+            {cars.map((car) => (
+              <Link
+                href={`${car.id}`}
+                key={car.id + Math.random() * 10}
+                className="relative bg-white shadow-md overflow-hidden border border-gray-200"
+              >
+                <div className="overflow-hidden">
+                  <Image
+                    src={car.image}
+                    alt={car.title}
+                    width={400}
+                    height={300}
+                    className="w-full object-cover hover:scale-[1.2] transition duration-[1s] ease-in-out"
+                  />
+                </div>
+                <div className="p-4">
+                  <h2 className="text-lg font-bold text-gray-900">
+                    {car.title}
+                  </h2>
+                  <p className="text-sm text-gray-600 mt-1">
+                    {car.year} / {car.mileage}
+                  </p>
+                  <div className="mt-3">
+                    <p className="text-xl font-semibold text-gray-900">
+                      {car.priceWithVAT}
                     </p>
-                    <div className="mt-3">
-                      <p className="text-xl font-semibold text-gray-900">
-                        {car.priceWithVAT}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {car.priceWithoutVAT}
-                      </p>
-                    </div>
+                    <p className="text-sm text-gray-500">
+                      {car.priceWithoutVAT}
+                    </p>
                   </div>
-                  <div className=" absolute bottom-0 right-0">
-                    <button className="p-4 w-full text-sm text-white bg-red-500 hover:bg-red-600 py-2">
-                      {"->"}
-                    </button>
-                  </div>
-                </Link>
-              ))}
-            </div>
-
-          </section>
-        ) : (
-          <div className="home__error-container">
-            <h2 className="text-black text-xl font-bold">Oops, no results</h2>
-            <p>{allCars?.message}</p>
+                </div>
+                <div className=" absolute bottom-0 right-0">
+                  <button className="p-4 w-full text-sm text-white bg-red-500 hover:bg-red-600 py-2">
+                    {"->"}
+                  </button>
+                </div>
+              </Link>
+            ))}
           </div>
-        )}
+        </section>
       </div>
     </main>
   );
