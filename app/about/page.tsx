@@ -79,17 +79,17 @@ const page = () => {
     {
       name: "John Smith",
       position: "CEO & Founder",
-      image: "/api/placeholder/400/400",
+      image: "https://picsum.photos/200",
     },
     {
       name: "Sarah Johnson",
       position: "Sales Director",
-      image: "/api/placeholder/400/400",
+      image: "https://picsum.photos/200",
     },
     {
       name: "Michael Brown",
       position: "Head of Service",
-      image: "/api/placeholder/400/400",
+      image: "https://picsum.photos/200",
     },
   ];
 
