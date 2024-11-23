@@ -84,7 +84,7 @@ export default function Page({
               <p className="text-xl">Without VAT: {carData.priceWithoutVAT}</p>
             </div>
             <Link
-              href="https://wa.me/9647717504243?text=Hello%2C%20I%20would%20like%20to%20book%20a%20service."
+              href="https://wa.me/9647717504243?text=مرحبًا%2C%20أود%20حجز%20خدمة."
               className="transition bg-green-500 hover:text-black text-white ease-in-out cursor-pointer border flex items-center gap-x-4 hover:bg-transparent border-green-500 px-6 py-2 mt-6"
             >
               <Image
